@@ -1,2 +1,14 @@
-// your components will all go in this `component` directory.
-// feel free to change this component.js into TodoList.js
+import React, { useState } from 'react';
+import Todo from "./Todo";
+
+export default function TodoList({ todoList }){
+    const [todos, setToDoList] = useState(todoList);
+
+    return(
+        <div>
+            {todos.map(i => {
+                return (<Todo todo={i}/>)
+            })}
+        </div>
+    )
+}
