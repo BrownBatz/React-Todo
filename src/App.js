@@ -12,6 +12,23 @@ class App extends React.Component {
       todoList: [{task: 'This is a test', id: Date.now(), completed: false}],
     }
   }
+
+  handleSubmit = (event) => {
+    let list = this.state.todoList;
+    list.push({task: event, id: Date.now(), completed: false});
+    this.setState({ todoList: list})
+  }
+
+  handleClearComplete = (e) =>{
+    let list = this.state.todoList;
+    let newList = list.filter(i => {return !i.completed});
+    console.log(newList);
+    console.log(list)
+    this.setState( {todoList: newList});
+    console.log(this.state.todoList)
+  }
+
+
   render() {
     return (
       <div>
@@ -19,7 +36,8 @@ class App extends React.Component {
         <TodoList todoList={this.state.todoList}/>
         <br />
         <h2>Add another task!</h2>
-        <TodoForm />
+        <TodoForm submitHandler={this.handleSubmit}/>
+        <button onClick={this.handleClearComplete}>Clear Completed</button>
       </div>
     );
   }
